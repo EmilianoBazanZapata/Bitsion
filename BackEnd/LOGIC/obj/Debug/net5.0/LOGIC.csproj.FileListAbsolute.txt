@@ -12,4 +12,3 @@ C:\Users\Emiliano\Desktop\BitSion\Bitsion\BackEnd\LOGIC\obj\Debug\net5.0\ref\LOG
 C:\Users\Emiliano\Desktop\BitSion\Bitsion\BackEnd\LOGIC\obj\Debug\net5.0\LOGIC.pdb
 C:\Users\Emiliano\Desktop\BitSion\Bitsion\BackEnd\LOGIC\bin\Debug\net5.0\DAL.dll
 C:\Users\Emiliano\Desktop\BitSion\Bitsion\BackEnd\LOGIC\bin\Debug\net5.0\DAL.pdb
-C:\Users\Emiliano\Desktop\BitSion\Bitsion\BackEnd\LOGIC\obj\Debug\net5.0\LOGIC.csproj.CopyComplete
