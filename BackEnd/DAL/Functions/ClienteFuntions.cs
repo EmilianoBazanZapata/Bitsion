@@ -88,7 +88,7 @@ namespace DAL.Functions
                 return cliente;
             }
         }
-        public async Task<IEnumerable<Cliente>> ListarClinetesActivos()
+        public async Task<List<Cliente>> ListarClinetesActivos()
         {
             using (var context = new DataBaseContext(DataBaseContext.ops.dbOptions))
             {
@@ -97,7 +97,7 @@ namespace DAL.Functions
             }
         }
 
-        public async Task<IEnumerable<Cliente>> ListarClinetesInactivos()
+        public async Task<List<Cliente>> ListarClinetesInactivos()
         {
             using (var context = new DataBaseContext(DataBaseContext.ops.dbOptions))
             {

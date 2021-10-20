@@ -14,7 +14,7 @@ namespace DAL.Interfaces
         Task<Cliente> EliminarCliente(int id);
         Task<Cliente> ReactivarCliente(int id);
         Task<Cliente> BuscarClientePorId(int id);
-        Task<IEnumerable<Cliente>> ListarClinetesActivos();
-        Task<IEnumerable<Cliente>> ListarClinetesInactivos();
+        Task<List<Cliente>> ListarClinetesActivos();
+        Task<List<Cliente>> ListarClinetesInactivos();
     }
 }
