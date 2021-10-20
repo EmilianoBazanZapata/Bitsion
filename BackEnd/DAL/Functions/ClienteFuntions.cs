@@ -79,13 +79,12 @@ namespace DAL.Functions
                 return query;
             }
         }
-
-        public async Task<Cliente> BuscarClientePorId(int id)
+        public async Task<List<Cliente>> BuscarClientePorId(int id)
         {
             using (var context = new DataBaseContext(DataBaseContext.ops.dbOptions))
             {
-                Cliente cliente = await context.clientes.FindAsync(id);
-                return cliente;
+                var lista = await context.clientes.Where(p => p.Id == id).ToListAsync();
+                return lista;
             }
         }
         public async Task<List<Cliente>> ListarClinetesActivos()
@@ -96,7 +95,6 @@ namespace DAL.Functions
                 return lista;
             }
         }
-
         public async Task<List<Cliente>> ListarClinetesInactivos()
         {
             using (var context = new DataBaseContext(DataBaseContext.ops.dbOptions))
@@ -105,7 +103,6 @@ namespace DAL.Functions
                 return lista;
             }
         }
-
         public async Task<Cliente> ReactivarCliente(int id)
         {
             using (var context = new DataBaseContext(DataBaseContext.ops.dbOptions))

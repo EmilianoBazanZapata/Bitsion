@@ -87,24 +87,10 @@ namespace LOGIC.ClienteLogic
                 return false;
             }
         }
-        public async Task<bool> BuscarClientePorId(int id)
+        public async Task<List<Cliente>> BuscarClientePorId(int id)
         {
-            try
-            {
-                var result = await _cliente.BuscarClientePorId(id);
-                if (result.Id > 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch
-            {
-                return false;
-            }
+            List<Cliente> clietnes = await _cliente.BuscarClientePorId(id); ;
+            return clietnes;
         }
         public async Task<List<Cliente>> ListadoDeLosClientesActivos()
         {

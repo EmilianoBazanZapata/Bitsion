@@ -3,92 +3,157 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Api.Models;
+using Api.Models.ClienteDto.cs;
+using DAL.Entities;
 using LOGIC.ClienteLogic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
-    public class ClienteController
+    public class ClienteController : ControllerBase
     {
         private ClienteLogic clienteLogic = new ClienteLogic();
+        protected ResponseDto _response;
+
+        public ClienteController()
+        {
+            _response = new ResponseDto();
+        }
+
         //Agregar Cliente
         [Route("AddNewUser")]
         [HttpPost]
-        public async Task<Boolean> AddUser(string nombre, string apellido, int identificacion, int edad, bool genero, bool activo, bool maneja, bool usaLentes, bool esdiabetico, bool otraEnfermedad, string enfermedadExtra)
+        public async Task<ActionResult<Cliente>> AddUser(string nombre, string apellido, int identificacion, int edad, bool genero, bool activo, bool maneja, bool usaLentes, bool esdiabetico, bool otraEnfermedad, string enfermedadExtra)
         {
-            bool result = await clienteLogic.AgregarCliente(nombre, apellido, identificacion, edad, genero, activo, maneja, usaLentes, esdiabetico, otraEnfermedad, enfermedadExtra);
-            return result;
+            try
+            {
+                bool result = await clienteLogic.AgregarCliente(nombre, apellido, identificacion, edad, genero, activo, maneja, usaLentes, esdiabetico, otraEnfermedad, enfermedadExtra);
+                _response.Result = result;
+                _response.DisplayMessage = "Usuario Agregado Exitosamente";
+                return Ok(_response);
+            }
+            catch (Exception ex)
+            {
+                _response.IsSucces = false;
+                _response.DisplayMessage = "ocurrio un problema";
+                _response.ErrorMessages = new List<string> { ex.ToString() };
+                return BadRequest(_response);
+            }
         }
         //Actualizar Cliente
         [Route("UpdateUser")]
         [HttpPost]
-        public async Task<Boolean> UpdateUser(int id, string nombre, string apellido, int identificacion, int edad, bool genero, bool activo, bool maneja, bool usaLentes, bool esdiabetico, bool otraEnfermedad, string enfermedadExtra)
+        public async Task<ActionResult<Cliente>> UpdateUser(int id, string nombre, string apellido, int identificacion, int edad, bool genero, bool activo, bool maneja, bool usaLentes, bool esdiabetico, bool otraEnfermedad, string enfermedadExtra)
         {
-            bool result = await clienteLogic.ActualizarCliente(id, nombre, apellido, identificacion, edad, genero, activo, maneja, usaLentes, esdiabetico, otraEnfermedad, enfermedadExtra);
-            return result;
+            try
+            {
+                var result = await clienteLogic.ActualizarCliente(id, nombre, apellido, identificacion, edad, genero, activo, maneja, usaLentes, esdiabetico, otraEnfermedad, enfermedadExtra);
+                _response.Result = result;
+                _response.DisplayMessage = "Usuario Actualizado Exitosamente";
+                return Ok(_response);
+            }
+            catch (Exception ex)
+            {
+                _response.IsSucces = false;
+                _response.DisplayMessage = "ocurrio un problema";
+                _response.ErrorMessages = new List<string> { ex.ToString() };
+                return BadRequest(_response);
+            }
         }
         //EliminarCliente
         [Route("DeleteUser")]
         [HttpPut]
-        public async Task<Boolean> DeleteUser(int id)
+        public async Task<ActionResult<Cliente>> DeleteUser(int id)
         {
-            bool result = await clienteLogic.EliminarClietne(id);
-            return result;
+            try
+            {
+                var result = await clienteLogic.EliminarClietne(id);
+                _response.Result = result;
+                _response.DisplayMessage = "Usuario Eliminado Exitosamente";
+                return Ok(_response);
+            }
+            catch (Exception ex)
+            {
+                _response.IsSucces = false;
+                _response.DisplayMessage = "ocurrio un problema";
+                _response.ErrorMessages = new List<string> { ex.ToString() };
+                return BadRequest(_response);
+            }
         }
         //ReactivarCliente
         [Route("ReactivateUser")]
         [HttpPut]
-        public async Task<Boolean> ReactivateUser(int id)
+        public async Task<ActionResult<Cliente>> ReactivateUser(int id)
         {
-            bool result = await clienteLogic.ReactivarClietne(id);
-            return result;
+            try
+            {
+                var result = await clienteLogic.ReactivarClietne(id);
+                _response.Result = result;
+                _response.DisplayMessage = "Usuario Eliminado Exitosamente";
+                return Ok(_response);
+            }
+            catch (Exception ex)
+            {
+                _response.IsSucces = false;
+                _response.DisplayMessage = "ocurrio un problema";
+                _response.ErrorMessages = new List<string> { ex.ToString() };
+                return BadRequest(_response);
+            }
         }
         //ListarUsuariosActivos
         [Route("GetAllUsersActives")]
         [HttpGet]
-        public async Task<List<ClienteViewModel>> GetAllUsersActives()
+        public async Task<ActionResult<IEnumerable<Cliente>>> GetAllUsersActives()
         {
-            List<ClienteViewModel> userList = new List<ClienteViewModel>();
-            var users = await clienteLogic.ListadoDeLosClientesActivos();
-            if (users.Count > 0)
+            try
             {
-                foreach (var user in users)
-                {
-                    ClienteViewModel currentUser = new ClienteViewModel
-                    {
-                        Id = user.Id,
-                        Nombre = user.Nombre,
-                        Apellido = user.Apellido,
-                        Identificacion = user.Identificacion
-                    };
-                    userList.Add(currentUser);
-                }
+                var lista = await clienteLogic.ListadoDeLosClientesActivos();
+                _response.Result = lista;
+                _response.DisplayMessage = "Lista de Clientes";
             }
-            return userList;
+            catch (Exception ex)
+            {
+                _response.IsSucces = false;
+                _response.ErrorMessages = new List<string> { ex.ToString() };
+            }
+            return Ok(_response);
         }
         //ListarUsuariosActivos
         [Route("GetAllUsersInactives")]
         [HttpGet]
-        public async Task<List<ClienteViewModel>> GetAllUsersInactives()
+        public async Task<ActionResult<IEnumerable<Cliente>>> GetAllUsersInactives()
         {
-            List<ClienteViewModel> userList = new List<ClienteViewModel>();
-            var users = await clienteLogic.ListadoDeLosClientesInactivos();
-            if (users.Count > 0)
+            try
             {
-                foreach (var user in users)
-                {
-                    ClienteViewModel currentUser = new ClienteViewModel
-                    {
-                        Id = user.Id,
-                        Nombre = user.Nombre,
-                        Apellido = user.Apellido,
-                        Identificacion = user.Identificacion
-                    };
-                    userList.Add(currentUser);
-                }
+                var lista = await clienteLogic.ListadoDeLosClientesInactivos();
+                _response.Result = lista;
+                _response.DisplayMessage = "Lista de Clientes";
             }
-            return userList;
+            catch (Exception ex)
+            {
+                _response.IsSucces = false;
+                _response.ErrorMessages = new List<string> { ex.ToString() };
+            }
+            return Ok(_response);
+        }
+        [Route("GetUserById")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Cliente>>> GetUserById(int id)
+        {
+           try
+            {
+                var lista = await clienteLogic.BuscarClientePorId(id);
+                _response.Result = lista;
+                _response.DisplayMessage = "Lista de Clientes";
+            }
+            catch (Exception ex)
+            {
+                _response.IsSucces = false;
+                _response.ErrorMessages = new List<string> { ex.ToString() };
+            }
+            return Ok(_response);
+
         }
     }
 }
