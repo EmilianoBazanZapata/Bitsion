@@ -39,6 +39,7 @@ namespace DAL.Entities
         [Required]
         public bool PadeceOtraEnfermedad { get; set; }
         [Required]
+        [Column(TypeName = "VARCHAR(5000)")]
         public string OtraEnfermedad { get; set; }
     }
 }
