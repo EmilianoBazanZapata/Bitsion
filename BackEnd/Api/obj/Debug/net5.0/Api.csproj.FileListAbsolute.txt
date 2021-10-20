@@ -63,3 +63,12 @@ C:\Users\Emiliano\Desktop\BitSion\Bitsion\BackEnd\Api\bin\Debug\net5.0\DAL.dll
 C:\Users\Emiliano\Desktop\BitSion\Bitsion\BackEnd\Api\bin\Debug\net5.0\LOGIC.dll
 C:\Users\Emiliano\Desktop\BitSion\Bitsion\BackEnd\Api\bin\Debug\net5.0\LOGIC.pdb
 C:\Users\Emiliano\Desktop\BitSion\Bitsion\BackEnd\Api\bin\Debug\net5.0\DAL.pdb
+c:\Users\Emiliano\Desktop\BitSion\Bitsion\BackEnd\Api\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+c:\Users\Emiliano\Desktop\BitSion\Bitsion\BackEnd\Api\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+c:\Users\Emiliano\Desktop\BitSion\Bitsion\BackEnd\Api\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll
+c:\Users\Emiliano\Desktop\BitSion\Bitsion\BackEnd\Api\bin\Debug\net5.0\Microsoft.CodeAnalysis.dll
+c:\Users\Emiliano\Desktop\BitSion\Bitsion\BackEnd\Api\bin\Debug\net5.0\Microsoft.CodeAnalysis.CSharp.dll
+c:\Users\Emiliano\Desktop\BitSion\Bitsion\BackEnd\Api\bin\Debug\net5.0\Microsoft.CodeAnalysis.Razor.dll
+c:\Users\Emiliano\Desktop\BitSion\Bitsion\BackEnd\Api\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+c:\Users\Emiliano\Desktop\BitSion\Bitsion\BackEnd\Api\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+c:\Users\Emiliano\Desktop\BitSion\Bitsion\BackEnd\Api\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

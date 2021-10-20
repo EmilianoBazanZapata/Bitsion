@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GgP5T30jyFI0hPPft7mYpV3V+a4y4GDrZvpoxMSSFYYOp++WltJQeO2hiyQkcO6agARCyPDSsZd6abKmIixkaw==",
+  "dgSpecHash": "88pOgAdPUsekfvRT8ubxt8xgk1j0ACZdOv+vtUZEGzKenLCGPJj3yvcEpmbdFJovd0ivsVSLOuRjE2wPIiAT8g==",
   "success": true,
-  "projectFilePath": "c:\\Users\\Emiliano\\Desktop\\BitSion\\Bitsion\\BackEnd\\Api\\Api.csproj",
+  "projectFilePath": "C:\\Users\\Emiliano\\Desktop\\BitSion\\Bitsion\\BackEnd\\Api\\Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Emiliano\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Emiliano\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
