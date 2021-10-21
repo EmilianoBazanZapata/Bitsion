@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClienteServicesService } from 'src/app/Services/cliente-services.service';
 
 @Component({
   selector: 'app-listado-de-clientes-inactivos',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListadoDeClientesInactivosComponent implements OnInit {
 
-  constructor() { }
+  ListadoDeClientesInactivos:any[] | undefined;
+  constructor(private _SharedService:ClienteServicesService) { }
 
   ngOnInit(): void {
+    this.ListadoDecLientesInactivos();
   }
-
+  ListadoDecLientesInactivos()
+  {
+    this._SharedService.ListadoDeClientesInactivos().subscribe(data=>
+      {
+        this.ListadoDeClientesInactivos = data;
+        //console.log(data);
+      })
+  }
 }

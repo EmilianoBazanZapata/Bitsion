@@ -14,8 +14,9 @@ export class ListadoDeClientesActivosComponent implements OnInit {
     this.ListarClientesActivos();
   }
   ListarClientesActivos(){
-      this._SharedService.ListadoCategorias().subscribe(data => {
+      this._SharedService.ListadoDeClientesActivos().subscribe(data => {
         this.ListaDeClientes = data;
+        //console.log(data);
       })
   }
 }

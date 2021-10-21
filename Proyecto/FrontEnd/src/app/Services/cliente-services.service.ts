@@ -12,9 +12,11 @@ export class ClienteServicesService {
   readonly ApiUrl = "https://localhost:5001";
   constructor(private http: HttpClient) { }
   //Listado de Clientes Activos
-  //Listado de Categorias Activas
-  ListadoCategorias(): Observable<any[]> {
+  ListadoDeClientesActivos(): Observable<any[]> {
     return this.http.get<any>(this.ApiUrl + "/GetAllUsersActives");
   }
-
+  //Listado de Clientes Inactivos
+  ListadoDeClientesInactivos(): Observable<any[]> {
+    return this.http.get<any>(this.ApiUrl + "/GetAllUsersInactives");
+  }
 }
