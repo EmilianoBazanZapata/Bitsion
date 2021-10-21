@@ -1,14 +1,18 @@
 <ng-template #template2>
     <div class="modal-header">
         <h4 class="modal-title pull-left">Actualizar Cliente</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="Close()"></button>
     </div>
     <div class=" modal-body ">
-        <app-agregar-editar-cliente [ClienteModel]="ClienteModel" (Actualizar)="actualizar($event)"></app-agregar-editar-cliente>
+        <app-agregar-editar-cliente [ClienteModel]="ClienteModel" (Actualizar)="actualizar($event)">
+        </app-agregar-editar-cliente>
     </div>
 </ng-template>
 <div class="container">
-    <button type="button" class="btn btn-primary" (click)="AgregarCliente(template2)">Agregar Cliente</button>
+    <div class="m-4">
+        <button type="button" class="btn btn-primary" (click)="AgregarCliente(template2)">Agregar Cliente</button>
+    </div>
+
     <table class="table">
         <thead class="table-dark text-center">
             <tr>
@@ -18,16 +22,21 @@
                 <th scope="col">Opciones</th>
             </tr>
         </thead>
-        <tbody class="text-center" *ngFor="let Cliente of ListaDeClientes">
+        <tbody class="text-center"
+            *ngFor="let Cliente of ListaDeClientes |slice: (page-1) * pageSize : page * pageSize">
             <tr>
                 <td>{{Cliente.identificacion}}</td>
                 <th>{{Cliente.nombre}}</th>
                 <td>{{Cliente.apellido}}</td>
                 <td>
-                    <button type="button" class="btn btn-outline-success" (click)="EditarCliente(template2,Cliente)">Editar</button>
-                    <button type="button" class="btn btn-outline-danger"(click)="EliminarCliente(Cliente.id)">Eliminar</button>
+                    <button type="button" class="btn btn-outline-success"
+                        (click)="EditarCliente(template2,Cliente)">Editar</button>
+                    <button type="button" class="btn btn-outline-danger"
+                        (click)="EliminarCliente(Cliente.id)">Eliminar</button>
                 </td>
             </tr>
         </tbody>
     </table>
+    <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize" [maxSize]="3"
+        [collectionSize]=CantDates></ngb-pagination>
 </div>

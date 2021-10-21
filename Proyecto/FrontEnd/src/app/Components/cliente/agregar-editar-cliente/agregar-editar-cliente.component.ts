@@ -156,4 +156,15 @@ export class AgregarEditarClienteComponent implements OnInit {
   AbrirModal(template: TemplateRef<any>) {
     this.ModalRef = this._ModalService.show(template);
   }
+  _keyUp(event: any) {
+    const pattern = /[0-9\+\-\ ]/;
+    let inputChar = String.fromCharCode(event.charCode);
+
+    if (!pattern.test(inputChar)) {
+      event.preventDefault();
+      Swal.fire('Cuidado', "Solo Ingrese NUMEROS sin puntos", 'error')
+      this.Actualizar.emit(true);
+    }
+}
+
 }

@@ -13,7 +13,10 @@ export class ListadoDeClientesActivosComponent implements OnInit {
   ModalRef: BsModalRef | undefined;
   //mensaje de la alerta al realizar alguna peticion
   Alerta: any;
-
+  //datos para la paginacion
+  public page = 1;
+  public pageSize = 6;
+  public CantDates = 0;
   constructor(private _SharedService: ClienteServicesService,
     private _ModalService: BsModalService) { }
 
@@ -24,6 +27,7 @@ export class ListadoDeClientesActivosComponent implements OnInit {
   ListarClientesActivos() {
     this._SharedService.ListadoDeClientesActivos().subscribe(data => {
       this.ListaDeClientes = data;
+      this.CantDates = this.ListaDeClientes.length;
       //console.log(data);
     })
   }

@@ -10,7 +10,11 @@ export class ListadoDeClientesInactivosComponent implements OnInit {
 
   ListadoDeClientesInactivos: any[] | undefined;
   //alerta para mostrar los mjensajes dependiendo de las respuestas del servidor
-  Alerta:any;
+  Alerta: any;
+  //datos para la paginacion
+  public page = 1;
+  public pageSize = 6;
+  public CantDates = 0;
   constructor(private _SharedService: ClienteServicesService) { }
 
   ngOnInit(): void {
@@ -19,24 +23,24 @@ export class ListadoDeClientesInactivosComponent implements OnInit {
   ListadoDecLientesInactivos() {
     this._SharedService.ListadoDeClientesInactivos().subscribe(data => {
       this.ListadoDeClientesInactivos = data;
+      this.CantDates = this.ListadoDeClientesInactivos.length;
       //console.log(data);
     })
   }
   ReactivarCliente(item: number) {
-    var val = 
+    var val =
     {
-      id:item
+      id: item
     }
-    this._SharedService.ReactivarCliente(val).subscribe(data=>
-      {
-        this.Alerta = data;
-        if (this.Alerta.displayMessage = "Usuario Reactivado Exitosamente") {
-          Swal.fire('Cuidado', this.Alerta.displayMessage, 'success')
-          this.ListadoDecLientesInactivos();
-        }
-        else {
-          Swal.fire('Cuidado', this.Alerta.displayMessage, 'error')
-        }
-      })
+    this._SharedService.ReactivarCliente(val).subscribe(data => {
+      this.Alerta = data;
+      if (this.Alerta.displayMessage = "Usuario Reactivado Exitosamente") {
+        Swal.fire('Cuidado', this.Alerta.displayMessage, 'success')
+        this.ListadoDecLientesInactivos();
+      }
+      else {
+        Swal.fire('Cuidado', this.Alerta.displayMessage, 'error')
+      }
+    })
   }
 }

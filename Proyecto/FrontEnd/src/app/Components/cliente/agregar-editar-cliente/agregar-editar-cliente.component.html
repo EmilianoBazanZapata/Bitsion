@@ -12,12 +12,12 @@
     <div class="mb-3">
         <label class="form-label">Identificacion</label>
         <input type="text" class="form-control" placeholder="Ingrese el numero de DNI" formControlName="Dni"
-            [(ngModel)]="Identificacion">
+            [(ngModel)]="Identificacion" (keyup)="_keyUp($event)">
     </div>
     <div class="mb-3">
         <label class="form-label">Edad</label>
         <input type="text" class="form-control" placeholder="Ingrese una Edad" formControlName="Edad"
-            [(ngModel)]="Edad">
+            [(ngModel)]="Edad" (keyup)="_keyUp($event)">
     </div>
     <div class="mb-3">
         <label class="form-label">Genero</label>

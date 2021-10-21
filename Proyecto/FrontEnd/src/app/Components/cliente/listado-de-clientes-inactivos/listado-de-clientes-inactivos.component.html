@@ -8,7 +8,7 @@
                 <th scope="col">Opciones</th>
             </tr>
         </thead>
-        <tbody class="text-center" *ngFor="let Cliente of ListadoDeClientesInactivos">
+        <tbody class="text-center" *ngFor="let Cliente of ListadoDeClientesInactivos |slice: (page-1) * pageSize : page * pageSize">
             <tr>
                 <td>{{Cliente.identificacion}}</td>
                 <th>{{Cliente.nombre}}</th>
@@ -19,4 +19,6 @@
             </tr>
         </tbody>
     </table>
+    <ngb-pagination class="d-flex justify-content-center" [(page)]="page" [pageSize]="pageSize" [maxSize]="3"
+    [collectionSize]=CantDates></ngb-pagination>
 </div>
