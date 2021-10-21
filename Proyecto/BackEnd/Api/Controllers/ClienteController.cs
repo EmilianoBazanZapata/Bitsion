@@ -60,7 +60,7 @@ namespace Api.Controllers
                 if (cliente.Edad < 18)
                 {
                     _response.Result = false;
-                    _response.DisplayMessage = "Debe Ingresar una Edad Valida";
+                    _response.DisplayMessage = "Debe Ingresar una Edad Valida y o superior a los 18 años";
                     return Ok(_response);
                 }
                 else
@@ -89,10 +89,49 @@ namespace Api.Controllers
         {
             try
             {
-                var result = await clienteLogic.ActualizarCliente(cliente.Id, cliente.Nombre, cliente.Apellido, cliente.Identificacion, cliente.Edad, cliente.Genero, cliente.Activo, cliente.Maneja, cliente.UsaLentes, cliente.EsDiabetico, cliente.PadeceOtraEnfermedad, cliente.OtraEnfermedad);
-                _response.Result = result;
-                _response.DisplayMessage = "Usuario Actualizado Exitosamente";
-                return Ok(_response);
+                if (cliente.OtraEnfermedad.Equals(""))
+                {
+                    _response.Result = false;
+                    _response.DisplayMessage = "Debe Ingresar una Observacion por ejemplo : Ninguna";
+                    return Ok(_response);
+                }
+                if (cliente.Nombre.Equals(""))
+                {
+                    _response.Result = false;
+                    _response.DisplayMessage = "Debe Ingresar un Nombre";
+                    return Ok(_response);
+                }
+                if (cliente.Apellido.Equals(""))
+                {
+                    _response.Result = false;
+                    _response.DisplayMessage = "Debe Ingresar un Apellido";
+                    return Ok(_response);
+                }
+                if (cliente.Edad.Equals(""))
+                {
+                    _response.Result = false;
+                    _response.DisplayMessage = "Debe Ingresar una Edad";
+                    return Ok(_response);
+                }
+                if (cliente.Identificacion.Equals(""))
+                {
+                    _response.Result = false;
+                    _response.DisplayMessage = "Debe Ingresar una Identificacion";
+                    return Ok(_response);
+                }
+                if (cliente.Edad < 18)
+                {
+                    _response.Result = false;
+                    _response.DisplayMessage = "Debe Ingresar una Edad Valida y o superior a los 18 años";
+                    return Ok(_response);
+                }
+                else
+                {
+                    var result = await clienteLogic.ActualizarCliente(cliente.Id, cliente.Nombre, cliente.Apellido, cliente.Identificacion, cliente.Edad, cliente.Genero, cliente.Activo, cliente.Maneja, cliente.UsaLentes, cliente.EsDiabetico, cliente.PadeceOtraEnfermedad, cliente.OtraEnfermedad);
+                    _response.Result = result;
+                    _response.DisplayMessage = "Usuario Actualizado Exitosamente";
+                    return Ok(_response);
+                }
             }
             catch (Exception ex)
             {

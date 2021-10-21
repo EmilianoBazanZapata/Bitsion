@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@an
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ClienteServicesService } from 'src/app/Services/cliente-services.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-agregar-editar-cliente',
   templateUrl: './agregar-editar-cliente.component.html',
@@ -28,8 +28,12 @@ export class AgregarEditarClienteComponent implements OnInit {
   Genero: any;
   ModalRef: BsModalRef | undefined;
   EnfermedadExrta: any;
-  Id:any;
+  Id: any;
   @Output() Actualizar = new EventEmitter<boolean>();
+
+  //alerta luego de alguna accion
+  Alerta: any;
+
   constructor(private fb: FormBuilder,
     private _SharedService: ClienteServicesService,
     private _ModalService: BsModalService) {
@@ -93,7 +97,7 @@ export class AgregarEditarClienteComponent implements OnInit {
     if (this.Boton == "Actualizar") {
       var val =
       {
-        id:this.Id,
+        id: this.Id,
         nombre: this.form?.value.Nombre,
         apellido: this.form?.value.Apellido,
         identificacion: this.form?.value.Dni,
@@ -107,13 +111,17 @@ export class AgregarEditarClienteComponent implements OnInit {
         otraEnfermedad: this.form?.value.EnfermedadExrta
       }
       //console.log(val)
-      this._SharedService.EditarCliente(val).subscribe(data=>
-        {
-          console.log(data);
-          this.form.reset();
+      this._SharedService.EditarCliente(val).subscribe(data => {
+        this.Alerta = data;
+        if (this.Alerta.displayMessage == "Usuario Actualizado Exitosamente") {
+          Swal.fire('Felicidades', this.Alerta.displayMessage, 'success');
           this.Actualizar.emit(true);
           this.Boton == "Registrar";
-        })
+        }
+        else {
+          Swal.fire('Cuidado', this.Alerta.displayMessage, 'error')
+        }
+      })
     }
     else if (this.Boton == "Registrar") {
       var val2 =
@@ -131,10 +139,16 @@ export class AgregarEditarClienteComponent implements OnInit {
         otraEnfermedad: this.form?.value.EnfermedadExrta
       }
       this._SharedService.AgregarCliente(val2).subscribe(data => {
-        console.log(data);
-        this.form.reset();
-        this.Actualizar.emit(true);
+        this.Alerta = data;
+        if (this.Alerta.displayMessage == "Usuario Agregado Exitosamente") {
 
+          Swal.fire('Felicidades', this.Alerta.displayMessage, 'success');
+          this.form.reset();
+          this.Actualizar.emit(true);
+        }
+        else {
+          Swal.fire('Cuidado', this.Alerta.displayMessage, 'error')
+        }
       })
     }
 
