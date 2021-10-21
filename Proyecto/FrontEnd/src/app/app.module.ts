@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClienteComponent } from './Components/cliente/cliente.component';
-import { AgregarEditarClienteComponent } from './Components/Cliente/agregar-editar-cliente/agregar-editar-cliente.component';
-import { ListadoDeClientesActivosComponent } from './Components/Cliente/listado-de-clientes-activos/listado-de-clientes-activos.component';
-import { ListadoDeClientesInactivosComponent } from './Components/Cliente/listado-de-clientes-inactivos/listado-de-clientes-inactivos.component';
+import { AgregarEditarClienteComponent } from './Components/cliente/agregar-editar-cliente/agregar-editar-cliente.component';
+import { ListadoDeClientesActivosComponent } from './Components/cliente/listado-de-clientes-activos/listado-de-clientes-activos.component';
+import { ListadoDeClientesInactivosComponent } from './Components/cliente/listado-de-clientes-inactivos/listado-de-clientes-inactivos.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ListadoDeClientesInactivosComponent } from './Components/Cliente/listad
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

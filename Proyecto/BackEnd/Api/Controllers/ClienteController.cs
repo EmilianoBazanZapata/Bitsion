@@ -109,15 +109,15 @@ namespace Api.Controllers
             try
             {
                 var lista = await clienteLogic.ListadoDeLosClientesActivos();
-                _response.Result = lista;
-                _response.DisplayMessage = "Lista de Clientes";
+                return Ok(lista);
             }
             catch (Exception ex)
             {
                 _response.IsSucces = false;
                 _response.ErrorMessages = new List<string> { ex.ToString() };
+                return BadRequest(_response);
             }
-            return Ok(_response);
+            
         }
         //ListarUsuariosActivos
         [Route("GetAllUsersInactives")]
@@ -127,15 +127,14 @@ namespace Api.Controllers
             try
             {
                 var lista = await clienteLogic.ListadoDeLosClientesInactivos();
-                _response.Result = lista;
-                _response.DisplayMessage = "Lista de Clientes";
+                return (lista);
             }
             catch (Exception ex)
             {
                 _response.IsSucces = false;
                 _response.ErrorMessages = new List<string> { ex.ToString() };
+                return BadRequest(_response);
             }
-            return Ok(_response);
         }
         [Route("GetUserById")]
         [HttpGet]

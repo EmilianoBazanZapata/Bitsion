@@ -1,1 +1,23 @@
-<p>listado-de-clientes-activos works!</p>
+<div class="container">
+    <table class="table">
+        <thead class="table-dark text-center">
+            <tr>
+                <th scope="col">Dni</th>
+                <th scope="col">Nomber</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+        <tbody class="text-center" *ngFor="let Cliente of ListaDeClientes">
+            <tr>
+                <td>{{Cliente.identificacion}}</td>
+                <th>{{Cliente.nombre}}</th>
+                <td>{{Cliente.apellido}}</td>
+                <td>
+                    <button type="button" class="btn btn-outline-success">Editar</button>
+                    <button type="button" class="btn btn-outline-danger">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

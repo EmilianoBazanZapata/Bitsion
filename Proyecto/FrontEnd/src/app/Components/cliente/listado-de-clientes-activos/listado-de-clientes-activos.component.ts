@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClienteServicesService } from 'src/app/Services/cliente-services.service';
 
 @Component({
   selector: 'app-listado-de-clientes-activos',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listado-de-clientes-activos.component.css']
 })
 export class ListadoDeClientesActivosComponent implements OnInit {
-
-  constructor() { }
+  ListaDeClientes:any[] | undefined;
+  constructor(private _SharedService:ClienteServicesService) { }
 
   ngOnInit(): void {
+    this.ListarClientesActivos();
   }
-
+  ListarClientesActivos(){
+      this._SharedService.ListadoCategorias().subscribe(data => {
+        this.ListaDeClientes = data;
+      })
+  }
 }
