@@ -12,8 +12,12 @@ export class ClienteServicesService {
   readonly ApiUrl = "https://localhost:5001";
   constructor(private http: HttpClient) { }
   //metodo para agregar un Cliente
-  AgregarCategoiria(val: any) {
+  AgregarCliente(val: any) {
     return this.http.post(this.ApiUrl + "/AddNewUser", val);
+  }
+  //metodo para editar un Cliente
+  EditarCliente(val: any) {
+    return this.http.put(this.ApiUrl + "/UpdateUser", val);
   }
   //Listado de Clientes Activos
   ListadoDeClientesActivos(): Observable<any[]> {

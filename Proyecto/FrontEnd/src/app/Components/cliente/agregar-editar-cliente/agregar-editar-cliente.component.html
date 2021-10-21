@@ -1,31 +1,31 @@
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<!--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Agregar Cliente</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body">-->
                 <form [formGroup]="form">
                     <div class="mb-3">
                         <label class="form-label">Nombre</label>
                         <input type="text" class="form-control" placeholder="Ingrese Un Nombre"
-                            formControlName="Nombre">
+                            formControlName="Nombre" [(ngModel)]="Nombre">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Apellido</label>
                         <input type="text" class="form-control" placeholder="Ingrese Un Apellido"
-                            formControlName="Apellido">
+                            formControlName="Apellido" [(ngModel)]="Apellido">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Identificacion</label>
                         <input type="text" class="form-control" placeholder="Ingrese el numero de DNI"
-                            formControlName="Dni">
+                            formControlName="Dni" [(ngModel)]="Identificacion">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Edad</label>
-                        <input type="text" class="form-control" placeholder="Ingrese una Edad" formControlName="Edad">
+                        <input type="text" class="form-control" placeholder="Ingrese una Edad" formControlName="Edad" [(ngModel)]="Edad">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Genero</label>
@@ -113,23 +113,25 @@
                         </div>
                         <div class="form-floating">
                             <textarea class="form-control" style="height: 100px"
-                                formControlName="EnfermedadExrta"></textarea>
+                                formControlName="EnfermedadExrta"[(ngModel)]="EnfermedadExrta"></textarea>
                             <label for="floatingTextarea2">Observaciones</label>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" (click)="AgregarCliente()">{{Boton}}</button>
+                    </div>
                 </form>
-            </div>
+            <!--</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" (click)="AgregarCliente()">Registrar</button>
             </div>
         </div>
     </div>
-</div>
+</div>-->
 
 
-<div class="container d-flex justify-content-end">
-    <!-- Button trigger modal -->
+<!--<div class="container d-flex justify-content-end">
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Launch demo modal
     </button>
-</div>
+</div>-->

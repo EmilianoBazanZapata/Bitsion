@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ClienteServicesService } from 'src/app/Services/cliente-services.service';
 
 @Component({
@@ -8,8 +9,14 @@ import { ClienteServicesService } from 'src/app/Services/cliente-services.servic
 })
 export class ListadoDeClientesActivosComponent implements OnInit {
   ListaDeClientes: any[] | undefined;
-  constructor(private _SharedService: ClienteServicesService) { }
 
+
+  constructor(private _SharedService: ClienteServicesService , 
+              private _ModalService: BsModalService) { }
+
+              
+  ClienteModel:any;
+  ModalRef: BsModalRef | undefined;
   ngOnInit(): void {
     this.ListarClientesActivos();
   }
@@ -19,7 +26,7 @@ export class ListadoDeClientesActivosComponent implements OnInit {
       //console.log(data);
     })
   }
-  EditarCliente(item: any) {
+  EditarCliente(template: TemplateRef<any>,item: any) {
     //console.log(item);
     var val = 
     {
@@ -36,6 +43,8 @@ export class ListadoDeClientesActivosComponent implements OnInit {
       padeceOtraEnfermedad: item.padeceOtraEnfermedad,
       otraEnfermedad: item.otraEnfermedad
     }
+    this.ClienteModel = val;
+    this.ModalRef = this._ModalService.show(template);
     //console.log(val);
   }
 }

@@ -1,3 +1,12 @@
+<ng-template #template2>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Actualizar Cliente</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class=" modal-body ">
+        <app-agregar-editar-cliente [ClienteModel]="ClienteModel"></app-agregar-editar-cliente>
+    </div>
+</ng-template>
 <div class="container">
     <table class="table">
         <thead class="table-dark text-center">
@@ -14,7 +23,7 @@
                 <th>{{Cliente.nombre}}</th>
                 <td>{{Cliente.apellido}}</td>
                 <td>
-                    <button type="button" class="btn btn-outline-success" (click)="EditarCliente(Cliente)">Editar</button>
+                    <button type="button" class="btn btn-outline-success" (click)="EditarCliente(template2,Cliente)">Editar</button>
                     <button type="button" class="btn btn-outline-danger">Eliminar</button>
                 </td>
             </tr>
