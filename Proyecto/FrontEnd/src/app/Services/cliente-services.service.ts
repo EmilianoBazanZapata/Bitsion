@@ -23,6 +23,10 @@ export class ClienteServicesService {
   EliminarCliente(val: any) {
     return this.http.put(this.ApiUrl + '/DeleteUser', val);
   }
+  //metodo para Reactivar una Cliente
+  ReactivarCliente(val: any) {
+    return this.http.put(this.ApiUrl + '/ReactivateUser', val);
+  }
   //Listado de Clientes Activos
   ListadoDeClientesActivos(): Observable<any[]> {
     return this.http.get<any>(this.ApiUrl + "/GetAllUsersActives");

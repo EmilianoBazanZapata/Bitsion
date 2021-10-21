@@ -61,7 +61,7 @@ export class ListadoDeClientesActivosComponent implements OnInit {
     this._SharedService.EliminarCliente(val).subscribe(data => {
       this.Alerta = data;
       if (this.Alerta.displayMessage = "Usuario Eliminado Exitosamente") {
-        Swal.fire('Cuidado', this.Alerta.displayMessage, 'error')
+        Swal.fire('Felicitaciones', this.Alerta.displayMessage, 'success')
         this.ListarClientesActivos();
       }
       else {
