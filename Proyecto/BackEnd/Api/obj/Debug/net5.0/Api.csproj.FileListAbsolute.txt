@@ -141,8 +141,8 @@ C:\Users\Emiliano\Desktop\BitSion\Bitsion\Proyecto\BackEnd\Api\obj\Debug\net5.0\
 C:\Users\Emiliano\Desktop\BitSion\Bitsion\Proyecto\BackEnd\Api\obj\Debug\net5.0\staticwebassets\Api.StaticWebAssets.xml
 C:\Users\Emiliano\Desktop\BitSion\Bitsion\Proyecto\BackEnd\Api\obj\Debug\net5.0\scopedcss\bundle\Api.styles.css
 C:\Users\Emiliano\Desktop\BitSion\Bitsion\Proyecto\BackEnd\Api\obj\Debug\net5.0\Api.RazorTargetAssemblyInfo.cache
-C:\Users\Emiliano\Desktop\BitSion\Bitsion\Proyecto\BackEnd\Api\obj\Debug\net5.0\Api.csproj.CopyComplete
 C:\Users\Emiliano\Desktop\BitSion\Bitsion\Proyecto\BackEnd\Api\obj\Debug\net5.0\Api.dll
 C:\Users\Emiliano\Desktop\BitSion\Bitsion\Proyecto\BackEnd\Api\obj\Debug\net5.0\ref\Api.dll
 C:\Users\Emiliano\Desktop\BitSion\Bitsion\Proyecto\BackEnd\Api\obj\Debug\net5.0\Api.pdb
 C:\Users\Emiliano\Desktop\BitSion\Bitsion\Proyecto\BackEnd\Api\obj\Debug\net5.0\Api.genruntimeconfig.cache
+C:\Users\Emiliano\Desktop\BitSion\Bitsion\Proyecto\BackEnd\Api\obj\Debug\net5.0\Api.csproj.CopyComplete

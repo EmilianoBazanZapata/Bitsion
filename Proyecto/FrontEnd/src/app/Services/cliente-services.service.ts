@@ -11,6 +11,10 @@ import { map } from 'rxjs/operators';
 export class ClienteServicesService {
   readonly ApiUrl = "https://localhost:5001";
   constructor(private http: HttpClient) { }
+  //metodo para agregar un Cliente
+  AgregarCategoiria(val: any) {
+    return this.http.post(this.ApiUrl + "/AddNewUser", val);
+  }
   //Listado de Clientes Activos
   ListadoDeClientesActivos(): Observable<any[]> {
     return this.http.get<any>(this.ApiUrl + "/GetAllUsersActives");

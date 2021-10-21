@@ -20,18 +20,52 @@ namespace Api.Controllers
         {
             _response = new ResponseDto();
         }
-
-        //Agregar Cliente
+        //metodo de prueba
         [Route("AddNewUser")]
         [HttpPost]
-        public async Task<ActionResult<Cliente>> AddUser(string nombre, string apellido, int identificacion, int edad, bool genero, bool activo, bool maneja, bool usaLentes, bool esdiabetico, bool otraEnfermedad, string enfermedadExtra)
+        public async Task<ActionResult<DtoCliente>> AddUser([FromBody] DtoCliente cliente)
         {
             try
             {
-                bool result = await clienteLogic.AgregarCliente(nombre, apellido, identificacion, edad, genero, activo, maneja, usaLentes, esdiabetico, otraEnfermedad, enfermedadExtra);
-                _response.Result = result;
-                _response.DisplayMessage = "Usuario Agregado Exitosamente";
-                return Ok(_response);
+                if (cliente.Nombre.Equals(""))
+                {
+                    _response.Result = false;
+                    _response.DisplayMessage = "Debe Ingresar un Nombre";
+                    return Ok(_response);
+                }
+                if (cliente.Apellido.Equals(""))
+                {
+                    _response.Result = false;
+                    _response.DisplayMessage = "Debe Ingresar un Apellido";
+                    return Ok(_response);
+                }
+                if (cliente.Edad.Equals(""))
+                {
+                    _response.Result = false;
+                    _response.DisplayMessage = "Debe Ingresar una Edad";
+                    return Ok(_response);
+                }
+                if (cliente.Identificacion.Equals(""))
+                {
+                    _response.Result = false;
+                    _response.DisplayMessage = "Debe Ingresar una Identificacion";
+                    return Ok(_response);
+                }
+                if (cliente.Edad < 18)
+                {
+                    _response.Result = false;
+                    _response.DisplayMessage = "Debe Ingresar una Edad Valida";
+                    return Ok(_response);
+                }
+                else
+                {
+                    bool result = await clienteLogic.AgregarCliente(cliente.Nombre, cliente.Apellido, cliente.Identificacion, cliente.Edad, cliente.Genero, cliente.Activo, cliente.Maneja, cliente.UsaLentes, cliente.EsDiabetico, cliente.PadeceOtraEnfermedad, cliente.OtraEnfermedad);
+                    //bool result = await clienteLogic.AgregarCliente(nombre, apellido, identificacion, edad, genero, activo, maneja, usaLentes, esdiabetico, otraEnfermedad, enfermedadExtra);
+
+                    _response.Result = result;
+                    _response.DisplayMessage = "Usuario Agregado Exitosamente";
+                    return Ok(_response);
+                }
             }
             catch (Exception ex)
             {
@@ -41,6 +75,7 @@ namespace Api.Controllers
                 return BadRequest(_response);
             }
         }
+
         //Actualizar Cliente
         [Route("UpdateUser")]
         [HttpPost]
@@ -117,7 +152,7 @@ namespace Api.Controllers
                 _response.ErrorMessages = new List<string> { ex.ToString() };
                 return BadRequest(_response);
             }
-            
+
         }
         //ListarUsuariosActivos
         [Route("GetAllUsersInactives")]
@@ -140,7 +175,7 @@ namespace Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Cliente>>> GetUserById(int id)
         {
-           try
+            try
             {
                 var lista = await clienteLogic.BuscarClientePorId(id);
                 _response.Result = lista;
