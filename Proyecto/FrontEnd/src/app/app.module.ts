@@ -11,6 +11,7 @@ import { AgregarEditarClienteComponent } from './Components/cliente/agregar-edit
 import { ListadoDeClientesActivosComponent } from './Components/cliente/listado-de-clientes-activos/listado-de-clientes-activos.component';
 import { ListadoDeClientesInactivosComponent } from './Components/cliente/listado-de-clientes-inactivos/listado-de-clientes-inactivos.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavBarComponent } from './Shared/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ClienteComponent,
     AgregarEditarClienteComponent,
     ListadoDeClientesActivosComponent,
-    ListadoDeClientesInactivosComponent
+    ListadoDeClientesInactivosComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,

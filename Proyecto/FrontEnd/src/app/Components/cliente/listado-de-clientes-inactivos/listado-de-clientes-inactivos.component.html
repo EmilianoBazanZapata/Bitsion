@@ -14,7 +14,7 @@
                 <th>{{Cliente.nombre}}</th>
                 <td>{{Cliente.apellido}}</td>
                 <td>
-                    <button type="button" class="btn btn-outline-success">Reactivar</button>
+                    <button type="button" class="btn btn-outline-success" (click)="ReactivarCliente(Cliente.id)">Reactivar</button>
                 </td>
             </tr>
         </tbody>
