@@ -85,7 +85,7 @@ namespace Api.Controllers
         //Actualizar Cliente
         [Route("UpdateUser")]
         [HttpPut]
-        public async Task<ActionResult<Cliente>> UpdateUser([FromBody] DtoCliente cliente)//int id, string nombre, string apellido, int identificacion, int edad, bool genero, bool activo, bool maneja, bool usaLentes, bool esdiabetico, bool otraEnfermedad, string enfermedadExtra)
+        public async Task<ActionResult<DtoCliente>> UpdateUser([FromBody] DtoCliente cliente)//int id, string nombre, string apellido, int identificacion, int edad, bool genero, bool activo, bool maneja, bool usaLentes, bool esdiabetico, bool otraEnfermedad, string enfermedadExtra)
         {
             try
             {
@@ -144,11 +144,11 @@ namespace Api.Controllers
         //EliminarCliente
         [Route("DeleteUser")]
         [HttpPut]
-        public async Task<ActionResult<Cliente>> DeleteUser(int id)
+        public async Task<ActionResult<Cliente>> DeleteUser([FromBody] DtoEliminarActivar cliente)
         {
             try
             {
-                var result = await clienteLogic.EliminarClietne(id);
+                var result = await clienteLogic.EliminarClietne(cliente.Id);
                 _response.Result = result;
                 _response.DisplayMessage = "Usuario Eliminado Exitosamente";
                 return Ok(_response);
@@ -164,11 +164,11 @@ namespace Api.Controllers
         //ReactivarCliente
         [Route("ReactivateUser")]
         [HttpPut]
-        public async Task<ActionResult<Cliente>> ReactivateUser(int id)
+        public async Task<ActionResult<Cliente>> ReactivateUser([FromBody] DtoEliminarActivar cliente)
         {
             try
             {
-                var result = await clienteLogic.ReactivarClietne(id);
+                var result = await clienteLogic.ReactivarClietne(cliente.Id);
                 _response.Result = result;
                 _response.DisplayMessage = "Usuario Eliminado Exitosamente";
                 return Ok(_response);

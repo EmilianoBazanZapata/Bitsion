@@ -19,6 +19,10 @@ export class ClienteServicesService {
   EditarCliente(val: any) {
     return this.http.put(this.ApiUrl + "/UpdateUser", val);
   }
+  //metodo para eliminar una Cliente
+  EliminarCliente(val: any) {
+    return this.http.put(this.ApiUrl + '/DeleteUser', val);
+  }
   //Listado de Clientes Activos
   ListadoDeClientesActivos(): Observable<any[]> {
     return this.http.get<any>(this.ApiUrl + "/GetAllUsersActives");

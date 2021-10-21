@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ClienteServicesService } from 'src/app/Services/cliente-services.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-listado-de-clientes-activos',
   templateUrl: './listado-de-clientes-activos.component.html',
@@ -9,14 +9,15 @@ import { ClienteServicesService } from 'src/app/Services/cliente-services.servic
 })
 export class ListadoDeClientesActivosComponent implements OnInit {
   ListaDeClientes: any[] | undefined;
-
+  ClienteModel: any;
+  ModalRef: BsModalRef | undefined;
+  //mensaje de la alerta al realizar alguna peticion
+  Alerta: any;
 
   constructor(private _SharedService: ClienteServicesService,
     private _ModalService: BsModalService) { }
 
 
-  ClienteModel: any;
-  ModalRef: BsModalRef | undefined;
   ngOnInit(): void {
     this.ListarClientesActivos();
   }
@@ -27,7 +28,7 @@ export class ListadoDeClientesActivosComponent implements OnInit {
     })
   }
   AgregarCliente(template: TemplateRef<any>) {
-    var val :undefined;
+    var val: undefined;
     this.ClienteModel = val;
     this.ModalRef = this._ModalService.show(template);
   }
@@ -52,12 +53,28 @@ export class ListadoDeClientesActivosComponent implements OnInit {
     this.ModalRef = this._ModalService.show(template);
     //console.log(val);
   }
-    //cerrar modal
-    Close() {
-      if (this.ModalRef) {
-        this.ModalRef.hide();
-      }
+  EliminarCliente(item: number) {
+    var val =
+    {
+      id: item
     }
+    this._SharedService.EliminarCliente(val).subscribe(data => {
+      this.Alerta = data;
+      if (this.Alerta.displayMessage = "Usuario Eliminado Exitosamente") {
+        Swal.fire('Cuidado', this.Alerta.displayMessage, 'error')
+        this.ListarClientesActivos();
+      }
+      else {
+        Swal.fire('Cuidado', this.Alerta.displayMessage, 'error')
+      }
+    })
+  }
+  //cerrar modal
+  Close() {
+    if (this.ModalRef) {
+      this.ModalRef.hide();
+    }
+  }
   actualizar(val: boolean) {
     if (val === true) {
       this.Close();
