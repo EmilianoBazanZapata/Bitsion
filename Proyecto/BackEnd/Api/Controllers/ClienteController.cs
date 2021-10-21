@@ -27,6 +27,12 @@ namespace Api.Controllers
         {
             try
             {
+                if (cliente.OtraEnfermedad.Equals(""))
+                {
+                    _response.Result = false;
+                    _response.DisplayMessage = "Debe Ingresar una Observacion por ejemplo : Ninguna";
+                    return Ok(_response);
+                }
                 if (cliente.Nombre.Equals(""))
                 {
                     _response.Result = false;
@@ -78,12 +84,12 @@ namespace Api.Controllers
 
         //Actualizar Cliente
         [Route("UpdateUser")]
-        [HttpPost]
+        [HttpPut]
         public async Task<ActionResult<Cliente>> UpdateUser([FromBody] DtoCliente cliente)//int id, string nombre, string apellido, int identificacion, int edad, bool genero, bool activo, bool maneja, bool usaLentes, bool esdiabetico, bool otraEnfermedad, string enfermedadExtra)
         {
             try
             {
-                var result = await clienteLogic.ActualizarCliente(cliente.Id,cliente.Nombre, cliente.Apellido, cliente.Identificacion, cliente.Edad, cliente.Genero, cliente.Activo, cliente.Maneja, cliente.UsaLentes, cliente.EsDiabetico, cliente.PadeceOtraEnfermedad, cliente.OtraEnfermedad);
+                var result = await clienteLogic.ActualizarCliente(cliente.Id, cliente.Nombre, cliente.Apellido, cliente.Identificacion, cliente.Edad, cliente.Genero, cliente.Activo, cliente.Maneja, cliente.UsaLentes, cliente.EsDiabetico, cliente.PadeceOtraEnfermedad, cliente.OtraEnfermedad);
                 _response.Result = result;
                 _response.DisplayMessage = "Usuario Actualizado Exitosamente";
                 return Ok(_response);

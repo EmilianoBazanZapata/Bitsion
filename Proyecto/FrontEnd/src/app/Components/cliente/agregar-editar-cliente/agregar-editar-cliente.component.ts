@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ClienteServicesService } from 'src/app/Services/cliente-services.service';
@@ -29,6 +29,7 @@ export class AgregarEditarClienteComponent implements OnInit {
   ModalRef: BsModalRef | undefined;
   EnfermedadExrta: any;
   Id:any;
+  @Output() Actualizar = new EventEmitter<boolean>();
   constructor(private fb: FormBuilder,
     private _SharedService: ClienteServicesService,
     private _ModalService: BsModalService) {
@@ -42,7 +43,7 @@ export class AgregarEditarClienteComponent implements OnInit {
       Lentes: [this.LentesForm, [Validators.required]],
       Diabetico: [this.DiabeticoForm, [Validators.required]],
       OtraEnfermedad: [this.OtraEnfermedadForm, [Validators.required]],
-      EnfermedadExrta: ["", [Validators.maxLength(5000)]]
+      EnfermedadExrta: ['', Validators.required]
     })
   }
 
@@ -109,6 +110,9 @@ export class AgregarEditarClienteComponent implements OnInit {
       this._SharedService.EditarCliente(val).subscribe(data=>
         {
           console.log(data);
+          this.form.reset();
+          this.Actualizar.emit(true);
+          this.Boton == "Registrar";
         })
     }
     else if (this.Boton == "Registrar") {
@@ -128,6 +132,9 @@ export class AgregarEditarClienteComponent implements OnInit {
       }
       this._SharedService.AgregarCliente(val2).subscribe(data => {
         console.log(data);
+        this.form.reset();
+        this.Actualizar.emit(true);
+
       })
     }
 

@@ -1,137 +1,115 @@
-
-<!--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar Cliente</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">-->
-                <form [formGroup]="form">
-                    <div class="mb-3">
-                        <label class="form-label">Nombre</label>
-                        <input type="text" class="form-control" placeholder="Ingrese Un Nombre"
-                            formControlName="Nombre" [(ngModel)]="Nombre">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Apellido</label>
-                        <input type="text" class="form-control" placeholder="Ingrese Un Apellido"
-                            formControlName="Apellido" [(ngModel)]="Apellido">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Identificacion</label>
-                        <input type="text" class="form-control" placeholder="Ingrese el numero de DNI"
-                            formControlName="Dni" [(ngModel)]="Identificacion">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Edad</label>
-                        <input type="text" class="form-control" placeholder="Ingrese una Edad" formControlName="Edad" [(ngModel)]="Edad">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Genero</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Genero" id="GeneroM"
-                                [(ngModel)]="GeneroForm" [value]="true" formControlName="Genero">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Masculino
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Genero" id="GeneroF"
-                                [(ngModel)]="GeneroForm" [value]="false" formControlName="Genero">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Femenino
-                            </label>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">¿Actualmente Maneja?</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Maneja" id="ManejaS"
-                                [(ngModel)]="ManejaForm" [value]="true" formControlName="Maneja">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Si
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Maneja" id="ManejaN"
-                                [(ngModel)]="ManejaForm" [value]="false" formControlName="Maneja">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                No
-                            </label>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">¿Actualmente Usa Lentes?</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Lentes" id="LentesS"
-                                [(ngModel)]="LentesForm" [value]="true" formControlName="Lentes">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Si
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Lentes" id="LentesN"
-                                [(ngModel)]="LentesForm" [value]="false" formControlName="Lentes">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                No
-                            </label>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">¿Es Diabetico?</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Diabetico" id="DiabeticoS"
-                                [(ngModel)]="DiabeticoForm" [value]="true" formControlName="Diabetico">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Si
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Diabetico" id="DiabeticoN"
-                                [(ngModel)]="DiabeticoForm" [value]="false" formControlName="Diabetico">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                No
-                            </label>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">¿Tiene Otra Enfermedad?</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="OtraEnfermedad" id="EnfermedadS"
-                                [(ngModel)]="OtraEnfermedadForm" [value]="true" formControlName="OtraEnfermedad">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Si
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="OtraEnfermedad" id="EnfermedadN"
-                                [(ngModel)]="OtraEnfermedadForm" [value]="false" formControlName="OtraEnfermedad">
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                No
-                            </label>
-                        </div>
-                        <div class="form-floating">
-                            <textarea class="form-control" style="height: 100px"
-                                formControlName="EnfermedadExrta"[(ngModel)]="EnfermedadExrta"></textarea>
-                            <label for="floatingTextarea2">Observaciones</label>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success" (click)="AgregarCliente()">{{Boton}}</button>
-                    </div>
-                </form>
-            <!--</div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" (click)="AgregarCliente()">Registrar</button>
-            </div>
+<form [formGroup]="form">
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control" placeholder="Ingrese Un Nombre" formControlName="Nombre"
+            [(ngModel)]="Nombre">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Apellido</label>
+        <input type="text" class="form-control" placeholder="Ingrese Un Apellido" formControlName="Apellido"
+            [(ngModel)]="Apellido">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Identificacion</label>
+        <input type="text" class="form-control" placeholder="Ingrese el numero de DNI" formControlName="Dni"
+            [(ngModel)]="Identificacion">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Edad</label>
+        <input type="text" class="form-control" placeholder="Ingrese una Edad" formControlName="Edad"
+            [(ngModel)]="Edad">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Genero</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="Genero" id="GeneroM" [(ngModel)]="GeneroForm"
+                [value]="true" formControlName="Genero">
+            <label class="form-check-label" for="flexRadioDefault1">
+                Masculino
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="Genero" id="GeneroF" [(ngModel)]="GeneroForm"
+                [value]="false" formControlName="Genero">
+            <label class="form-check-label" for="flexRadioDefault2">
+                Femenino
+            </label>
         </div>
     </div>
-</div>-->
-
-
-<!--<div class="container d-flex justify-content-end">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-    </button>
-</div>-->
+    <div class="mb-3">
+        <label class="form-label">¿Actualmente Maneja?</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="Maneja" id="ManejaS" [(ngModel)]="ManejaForm"
+                [value]="true" formControlName="Maneja">
+            <label class="form-check-label" for="flexRadioDefault1">
+                Si
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="Maneja" id="ManejaN" [(ngModel)]="ManejaForm"
+                [value]="false" formControlName="Maneja">
+            <label class="form-check-label" for="flexRadioDefault2">
+                No
+            </label>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">¿Actualmente Usa Lentes?</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="Lentes" id="LentesS" [(ngModel)]="LentesForm"
+                [value]="true" formControlName="Lentes">
+            <label class="form-check-label" for="flexRadioDefault1">
+                Si
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="Lentes" id="LentesN" [(ngModel)]="LentesForm"
+                [value]="false" formControlName="Lentes">
+            <label class="form-check-label" for="flexRadioDefault2">
+                No
+            </label>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">¿Es Diabetico?</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="Diabetico" id="DiabeticoS" [(ngModel)]="DiabeticoForm"
+                [value]="true" formControlName="Diabetico">
+            <label class="form-check-label" for="flexRadioDefault1">
+                Si
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="Diabetico" id="DiabeticoN" [(ngModel)]="DiabeticoForm"
+                [value]="false" formControlName="Diabetico">
+            <label class="form-check-label" for="flexRadioDefault2">
+                No
+            </label>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">¿Tiene Otra Enfermedad?</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="OtraEnfermedad" id="EnfermedadS"
+                [(ngModel)]="OtraEnfermedadForm" [value]="true" formControlName="OtraEnfermedad">
+            <label class="form-check-label" for="flexRadioDefault1">
+                Si
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="OtraEnfermedad" id="EnfermedadN"
+                [(ngModel)]="OtraEnfermedadForm" [value]="false" formControlName="OtraEnfermedad">
+            <label class="form-check-label" for="flexRadioDefault2">
+                No
+            </label>
+        </div>
+        <div class="form-floating">
+            <textarea class="form-control" style="height: 100px" formControlName="EnfermedadExrta"
+                [(ngModel)]="EnfermedadExrta"></textarea>
+            <label for="floatingTextarea2">Observaciones</label>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="AgregarCliente()" [disabled]="form.invalid">{{Boton}}</button>
+    </div>
+</form>

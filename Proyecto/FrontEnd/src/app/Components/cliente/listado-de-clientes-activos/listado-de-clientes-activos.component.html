@@ -4,10 +4,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
     <div class=" modal-body ">
-        <app-agregar-editar-cliente [ClienteModel]="ClienteModel"></app-agregar-editar-cliente>
+        <app-agregar-editar-cliente [ClienteModel]="ClienteModel" (Actualizar)="actualizar($event)"></app-agregar-editar-cliente>
     </div>
 </ng-template>
 <div class="container">
+    <button type="button" class="btn btn-primary" (click)="AgregarCliente(template2)">Agregar Cliente</button>
     <table class="table">
         <thead class="table-dark text-center">
             <tr>

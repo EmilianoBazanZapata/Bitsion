@@ -11,11 +11,11 @@ export class ListadoDeClientesActivosComponent implements OnInit {
   ListaDeClientes: any[] | undefined;
 
 
-  constructor(private _SharedService: ClienteServicesService , 
-              private _ModalService: BsModalService) { }
+  constructor(private _SharedService: ClienteServicesService,
+    private _ModalService: BsModalService) { }
 
-              
-  ClienteModel:any;
+
+  ClienteModel: any;
   ModalRef: BsModalRef | undefined;
   ngOnInit(): void {
     this.ListarClientesActivos();
@@ -26,11 +26,16 @@ export class ListadoDeClientesActivosComponent implements OnInit {
       //console.log(data);
     })
   }
-  EditarCliente(template: TemplateRef<any>,item: any) {
+  AgregarCliente(template: TemplateRef<any>) {
+    var val :undefined;
+    this.ClienteModel = val;
+    this.ModalRef = this._ModalService.show(template);
+  }
+  EditarCliente(template: TemplateRef<any>, item: any) {
     //console.log(item);
-    var val = 
+    var val =
     {
-      id : item.id,
+      id: item.id,
       nombre: item.nombre,
       apellido: item.apellido,
       identificacion: item.identificacion,
@@ -46,5 +51,17 @@ export class ListadoDeClientesActivosComponent implements OnInit {
     this.ClienteModel = val;
     this.ModalRef = this._ModalService.show(template);
     //console.log(val);
+  }
+    //cerrar modal
+    Close() {
+      if (this.ModalRef) {
+        this.ModalRef.hide();
+      }
+    }
+  actualizar(val: boolean) {
+    if (val === true) {
+      this.Close();
+      this.ListarClientesActivos();
+    }
   }
 }
