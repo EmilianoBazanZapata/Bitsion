@@ -5,7 +5,9 @@ import { ListadoDeClientesInactivosComponent } from './Components/cliente/listad
 
 const routes: Routes = [
   { path: 'ClientesActivos', component: ListadoDeClientesActivosComponent},
-  { path: 'ClientesInactivos', component: ListadoDeClientesInactivosComponent}
+  { path: 'ClientesInactivos', component: ListadoDeClientesInactivosComponent},
+  { path: '', component: ListadoDeClientesActivosComponent},
+  { path: '**', component: ListadoDeClientesActivosComponent},
 ];
 
 @NgModule({

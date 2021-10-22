@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ClienteServicesService } from 'src/app/Services/cliente-services.service';
 import Swal from 'sweetalert2';
@@ -17,8 +17,10 @@ export class ListadoDeClientesActivosComponent implements OnInit {
   public page = 1;
   public pageSize = 6;
   public CantDates = 0;
+  Texto="Agregar Cliente";
   constructor(private _SharedService: ClienteServicesService,
-    private _ModalService: BsModalService) { }
+    private _ModalService: BsModalService,
+    private cdr: ChangeDetectorRef) { }
 
 
   ngOnInit(): void {
@@ -32,11 +34,14 @@ export class ListadoDeClientesActivosComponent implements OnInit {
     })
   }
   AgregarCliente(template: TemplateRef<any>) {
+    this.Texto="Agregar Cliente"
     var val: undefined;
     this.ClienteModel = val;
     this.ModalRef = this._ModalService.show(template);
+    this.cdr.detectChanges();
   }
   EditarCliente(template: TemplateRef<any>, item: any) {
+    this.Texto="Actualizar Cliente"
     //console.log(item);
     var val =
     {
@@ -55,6 +60,7 @@ export class ListadoDeClientesActivosComponent implements OnInit {
     }
     this.ClienteModel = val;
     this.ModalRef = this._ModalService.show(template);
+    this.cdr.detectChanges();
     //console.log(val);
   }
   EliminarCliente(item: number) {

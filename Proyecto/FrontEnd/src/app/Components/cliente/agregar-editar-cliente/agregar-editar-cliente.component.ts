@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ClienteServicesService } from 'src/app/Services/cliente-services.service';
@@ -36,12 +36,13 @@ export class AgregarEditarClienteComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private _SharedService: ClienteServicesService,
-    private _ModalService: BsModalService) {
+    private _ModalService: BsModalService,
+    private cdr: ChangeDetectorRef) {
     this.form = this.fb.group({
       Nombre: ["hola", [Validators.required, Validators.maxLength(255)]],
       Apellido: ["", [Validators.required, Validators.maxLength(255)]],
-      Dni: ["", [Validators.required, Validators.maxLength(255),Validators.pattern(/^[0-9]+$/)]],
-      Edad: ["", [Validators.required, Validators.maxLength(3),Validators.pattern(/^[0-9]+$/)]],
+      Dni: ["", [Validators.required, Validators.maxLength(255), Validators.pattern(/^[0-9]+$/)]],
+      Edad: ["", [Validators.required, Validators.maxLength(3), Validators.pattern(/^[0-9]+$/)]],
       Genero: [this.GeneroForm, [Validators.required]],
       Maneja: [this.ManejaForm, [Validators.required]],
       Lentes: [this.LentesForm, [Validators.required]],
@@ -52,10 +53,12 @@ export class AgregarEditarClienteComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.cdr.detectChanges();
     if (this.ClienteModel != undefined) {
-      this.Boton = 'Actualizar';
-      this.Id = this.ClienteModel.id
-      this.Nombre = this.ClienteModel.nombre,
+        this.cdr.detectChanges();
+        this.Boton = 'Actualizar';
+        this.Id = this.ClienteModel.id
+        this.Nombre = this.ClienteModel.nombre,
         this.Apellido = this.ClienteModel.apellido,
         this.Edad = this.ClienteModel.edad,
         this.Identificacion = this.ClienteModel.identificacion,
@@ -90,6 +93,7 @@ export class AgregarEditarClienteComponent implements OnInit {
       else {
         this.OtraEnfermedadForm = false;
       }
+      this.cdr.detectChanges();
     }
   }
   AgregarCliente() {
