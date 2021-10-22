@@ -1,23 +1,43 @@
 <form [formGroup]="form">
     <div class="mb-3">
-        <label class="form-label">Nombre</label>
-        <input type="text" class="form-control" placeholder="Ingrese Un Nombre" formControlName="Nombre"
+        <div class="input-group mb-3">
+            <span class="input-group-text">
+                <i class="fas fa-user" [class.green-icon]="this.form.get('Nombre')?.valid"
+                    [class.red-icon]="this.form.get('Nombre')?.invalid && this.form.get('Nombre')?.touched"></i>
+            </span>
+            <input type="text" class="form-control" placeholder="Ingrese Un Nombre" formControlName="Nombre"
             [(ngModel)]="Nombre">
+        </div>
     </div>
     <div class="mb-3">
-        <label class="form-label">Apellido</label>
-        <input type="text" class="form-control" placeholder="Ingrese Un Apellido" formControlName="Apellido"
+        <div class="input-group mb-3">
+            <span class="input-group-text">
+                <i class="fas fa-user" [class.green-icon]="this.form.get('Apellido')?.valid"
+                    [class.red-icon]="this.form.get('Apellido')?.invalid && this.form.get('Apellido')?.touched"></i>
+            </span>
+            <input type="text" class="form-control" placeholder="Ingrese Un Apellido" formControlName="Apellido"
             [(ngModel)]="Apellido">
+        </div>
     </div>
     <div class="mb-3">
-        <label class="form-label">Identificacion</label>
-        <input type="text" class="form-control" placeholder="Ingrese el numero de DNI" formControlName="Dni"
-            [(ngModel)]="Identificacion" (keyup)="_keyUp($event)">
+        <div class="input-group mb-3">
+            <span class="input-group-text">
+                <i class="fas fa-id-card-alt" [class.green-icon]="this.form.get('Dni')?.valid"
+                    [class.red-icon]="this.form.get('Dni')?.invalid && this.form.get('Dni')?.touched"></i>
+            </span>
+            <input type="text" class="form-control" placeholder="Ingrese el numero de DNI" formControlName="Dni"
+            [(ngModel)]="Identificacion">
+        </div>
+
     </div>
     <div class="mb-3">
-        <label class="form-label">Edad</label>
-        <input type="text" class="form-control" placeholder="Ingrese una Edad" formControlName="Edad"
-            [(ngModel)]="Edad" (keyup)="_keyUp($event)">
+        <div class="input-group mb-3">
+            <span class="input-group-text">
+                <i class="fas fa-birthday-cake" [class.green-icon]="this.form.get('Edad')?.valid"
+                    [class.red-icon]="this.form.get('Edad')?.invalid && this.form.get('Edad')?.touched"></i>
+            </span>
+            <input type="text" class="form-control" placeholder="Ingrese una Edad" formControlName="Edad" [(ngModel)]="Edad">
+        </div>
     </div>
     <div class="mb-3">
         <label class="form-label">Genero</label>
@@ -104,12 +124,18 @@
             </label>
         </div>
         <div class="form-floating">
-            <textarea class="form-control" style="height: 100px" formControlName="EnfermedadExrta"
-                [(ngModel)]="EnfermedadExrta"></textarea>
-            <label for="floatingTextarea2">Observaciones</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text">
+                    <i class="fas fa-clipboard" [class.green-icon]="this.form.get('EnfermedadExrta')?.valid"
+                        [class.red-icon]="this.form.get('EnfermedadExrta')?.invalid && this.form.get('EnfermedadExrta')?.touched"></i>
+                </span>
+                <textarea class="form-control" style="height: 100px" formControlName="EnfermedadExrta"
+                [(ngModel)]="EnfermedadExrta" placeholder="Observaciones"></textarea>
+            </div>
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-success" (click)="AgregarCliente()" [disabled]="form.invalid">{{Boton}}</button>
+        <button type="button" class="btn btn-success" (click)="AgregarCliente()"
+            [disabled]="form.invalid">{{Boton}}</button>
     </div>
 </form>

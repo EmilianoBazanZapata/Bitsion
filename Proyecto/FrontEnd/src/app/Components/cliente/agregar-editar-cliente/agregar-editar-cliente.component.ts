@@ -40,8 +40,8 @@ export class AgregarEditarClienteComponent implements OnInit {
     this.form = this.fb.group({
       Nombre: ["hola", [Validators.required, Validators.maxLength(255)]],
       Apellido: ["", [Validators.required, Validators.maxLength(255)]],
-      Dni: ["", [Validators.required, Validators.maxLength(255)]],
-      Edad: ["", [Validators.required, Validators.maxLength(3)]],
+      Dni: ["", [Validators.required, Validators.maxLength(255),Validators.pattern(/^[0-9]+$/)]],
+      Edad: ["", [Validators.required, Validators.maxLength(3),Validators.pattern(/^[0-9]+$/)]],
       Genero: [this.GeneroForm, [Validators.required]],
       Maneja: [this.ManejaForm, [Validators.required]],
       Lentes: [this.LentesForm, [Validators.required]],
@@ -156,15 +156,4 @@ export class AgregarEditarClienteComponent implements OnInit {
   AbrirModal(template: TemplateRef<any>) {
     this.ModalRef = this._ModalService.show(template);
   }
-  _keyUp(event: any) {
-    const pattern = /[0-9\+\-\ ]/;
-    let inputChar = String.fromCharCode(event.charCode);
-
-    if (!pattern.test(inputChar)) {
-      event.preventDefault();
-      Swal.fire('Cuidado', "Solo Ingrese NUMEROS sin puntos", 'error')
-      this.Actualizar.emit(true);
-    }
-}
-
 }
